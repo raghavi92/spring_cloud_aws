@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SQSListener {
 
-    @SqsListener(value = "my_queue", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
+    @SqsListener(value = "test-queue-opentracing", deletionPolicy = SqsMessageDeletionPolicy.NEVER)
     public void processMessages(String message) {
         System.out.println(message);
     }
