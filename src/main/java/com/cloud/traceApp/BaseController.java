@@ -1,10 +1,7 @@
 package com.cloud.traceApp;
 
 import com.cloud.aws.sqs.SQSSender;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BaseController {
@@ -15,12 +12,12 @@ public class BaseController {
     }
 
     @GetMapping("/message")
-    public String getMessage() {
-        return "hello";
+    public String getMessage(@RequestParam String message) {
+        return message;
     }
 
     @PostMapping("/message")
     public void postMessage(@RequestBody String message) {
-        sqsSender.sendMessage(message);
+        sqsSender.sendMessageWithTracingAttribute(message);
     }
 }
